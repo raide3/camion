@@ -60,7 +60,7 @@ if [ ! -z "$option_d1" ]; then
   }
 gnuplot ./images/template.gnu
 convert -rotate 90 "./temp/picture_d1.png" "./images/histogram1.png"
-#display "./images/picture_d1.png"
+
 
 
 fi
@@ -82,9 +82,7 @@ if [ ! -z "$option_l" ]; then
   tail -n +2 "$csv_file" | cut -d';' -f1,5 | awk -F';' '{distance[$1] += $2} END {for (trip in distance) {printf "%s;%.4f\n", trip, distance[trip]}}' | sort -t';' -nr -k2 | head -n +10 | sort -t';' -n -k1> ./temp/sample_l.dat
   }
   gnuplot ./images/template_l.gnu
-#display "./images/picture_l.png"
 fi
-
 
 if [ ! -z "$option_t" ]; then
   time {
@@ -93,7 +91,6 @@ if [ ! -z "$option_t" ]; then
   ./city_stats data.csv > ./temp/city_stats_output.dat
   }
   gnuplot ./images/template_t.gnu
-  #display "./images/picture_t.png"
 fi
 
 if [ ! -z "$option_s" ]; then
@@ -103,5 +100,16 @@ if [ ! -z "$option_s" ]; then
   ./process_s data.csv > ./temp/process_s_output.dat
   }
   gnuplot ./images/template_s.gnu
-  #display "./images/picture_s.png"
 fi
+
+#if [ ! -x "mon_programme" ]; then
+ #   echo "L'exécutable C n'est pas présent, compilation en cours..."
+    # Compiler le programme C
+ #   if gcc -o mon_programme mon_programme.c; then
+  #      echo "Compilation réussie."
+  #  else
+   #     echo "Erreur lors de la compilation."
+  #      exit 1  # Quitter le script avec un code d'erreur
+  #  fi
+#fi
+'
